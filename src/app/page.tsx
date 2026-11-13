@@ -1,69 +1,211 @@
-import Image from "next/image";
+import Link from "next/link";
+import { CTABand } from "@/components/CTABand";
+import { Hero } from "@/components/Hero";
+import { PelletDivider } from "@/components/PelletMotif";
+import { SectionHeading } from "@/components/SectionHeading";
+import { SITE } from "@/lib/constants";
+import { MARKETS } from "@/lib/markets";
+import { PRODUCT_FAMILIES } from "@/lib/products";
 
-export default function Home() {
+const WHY = [
+  {
+    title: "Specialty & custom formulations",
+    text: "Regular, specialty and customised masterbatch solutions matched to polymer and process.",
+  },
+  {
+    title: "Application-led optimisation",
+    text: "Grades tuned to your machine, process window and end-use performance targets.",
+  },
+  {
+    title: "Consistent quality",
+    text: "Batch-to-batch reliability so production teams can run with confidence.",
+  },
+  {
+    title: "Process & cost support",
+    text: "Technical partnership that looks beyond pigment — towards efficiency and value.",
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <Hero
+        headline="Masterbatches engineered for performance."
+        support="White, Black, Colour, Additive & Filler masterbatches for PE, PP and engineering polymers — from Morbi, Gujarat."
+        primaryHref="/find-grade"
+        primaryLabel="Find a Grade"
+        secondaryHref="/contact?type=quote"
+        secondaryLabel="Talk to Us"
+      />
+
+      <section className="bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+          <SectionHeading
+            eyebrow="Company"
+            title="SkyBlend Masterbatch LLP"
+            description="A part of the Sky Group — manufacturing from Morbi, Gujarat."
+          />
+          <PelletDivider />
+          <p className="mx-auto mt-6 max-w-4xl text-base leading-relaxed text-slate sm:text-lg">
+            SkyBlend Masterbatch LLP, a part of the Sky Group, is a Morbi,
+            Gujarat-based manufacturer of White, Black, Colour, and Additive
+            Masterbatches for PE, PP and Engineering Polymers, including PE- and
+            PP-based Filler Masterbatches. With over 15 years of industry
+            experience, we specialise in regular, specialty and customised
+            masterbatch solutions for Blown & Cast Films, Extrusion Coating &
+            Lamination, Injection & Blow Moulding, Rotational Moulding, Raffia &
+            FIBC, Pipe & Profile Extrusion, Mono & Multifilament, Agricultural
+            Films, and Sheet Extrusion (PP, HIPS, PC & PET). Driven by technical
+            expertise, consistent quality and customer-focused innovation, we
+            deliver reliable, high-performance and cost-effective masterbatch
+            solutions. {SITE.tagline}
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/about"
+            className="focus-ring mt-6 inline-flex min-h-11 items-center text-sm font-semibold text-teal underline-offset-4 hover:underline"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Read our story
+          </Link>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="border-y border-navy/10 bg-surface">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+          <SectionHeading
+            eyebrow="Products"
+            title="Masterbatch families"
+            description="Clear taxonomy across white, black, colour, additive and filler systems — with filler masterbatches as a core strength."
+          />
+          <ul className="mt-10 divide-y divide-navy/10 border-y border-navy/10">
+            {PRODUCT_FAMILIES.map((product) => (
+              <li key={product.id}>
+                <Link
+                  href={`/products#${product.id}`}
+                  className="focus-ring group flex flex-col gap-2 py-5 transition-colors sm:flex-row sm:items-baseline sm:justify-between"
+                >
+                  <span className="font-display text-xl font-semibold text-navy group-hover:text-teal">
+                    {product.name}
+                    {product.highlight ? (
+                      <span className="ml-2 text-xs font-semibold tracking-[0.12em] text-teal uppercase">
+                        Core
+                      </span>
+                    ) : null}
+                  </span>
+                  <span className="max-w-xl text-sm text-slate sm:text-right">
+                    {product.carriers.join(" · ")}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+          <SectionHeading
+            eyebrow="Markets"
+            title="Built for real processing lines"
+            description="From film and fibre to moulding, pipe and sheet — mapped to the families that fit."
+          />
+          <div className="mt-10 flex flex-wrap gap-x-4 gap-y-3">
+            {MARKETS.map((market) => (
+              <Link
+                key={market.id}
+                href={`/markets#${market.id}`}
+                className="focus-ring border-b border-navy/20 pb-0.5 text-sm font-medium text-navy transition-colors hover:border-teal hover:text-teal"
+              >
+                {market.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-navy text-white">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+          <SectionHeading
+            eyebrow="Why SkyBlend"
+            title="Technical depth. Practical results."
+            light
+          />
+          <ul className="mt-10 grid gap-8 sm:grid-cols-2">
+            {WHY.map((item) => (
+              <li key={item.title}>
+                <h3 className="font-display text-lg font-semibold text-white">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/75 sm:text-base">
+                  {item.text}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <CTABand
+        title="Partner with a masterbatch team that stays with the process."
+        description="Share your polymer, application and performance targets — we'll help formulate grades that hold up batch after batch."
+        primaryLabel="Request a Quote"
+        primaryHref="/contact"
+        secondaryHref="/products"
+        secondaryLabel="Browse products"
+      />
+
+      <section className="border-t border-navy/10 bg-surface">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Tools"
+            title="Shortlist faster than a brochure."
+            description="Use the grade finder, product × market matrix and process notes — then request a quote, sample or TDS."
+          />
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/find-grade"
+              className="focus-ring inline-flex min-h-11 items-center bg-navy px-5 py-2.5 text-sm font-semibold text-white hover:bg-teal"
+            >
+              Find a Grade
+            </Link>
+            <Link
+              href="/markets#matrix"
+              className="focus-ring inline-flex min-h-11 items-center border border-navy/20 px-5 py-2.5 text-sm font-semibold text-navy hover:border-teal"
+            >
+              View matrix
+            </Link>
+            <Link
+              href="/resources"
+              className="focus-ring inline-flex min-h-11 items-center border border-navy/20 px-5 py-2.5 text-sm font-semibold text-navy hover:border-teal"
+            >
+              Resources
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Contact"
+            title="Let’s start a technical conversation."
+            description={`${SITE.location} · Part of the ${SITE.group}. ${SITE.responseSla}`}
+          />
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href="/contact?type=quote"
+              className="focus-ring inline-flex min-h-11 items-center bg-teal px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-navy"
+            >
+              Request a Quote
+            </Link>
+            <Link
+              href="/contact?type=sample"
+              className="focus-ring inline-flex min-h-11 items-center border border-navy/20 px-5 py-2.5 text-sm font-semibold text-navy hover:border-teal"
+            >
+              Request a Sample
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
