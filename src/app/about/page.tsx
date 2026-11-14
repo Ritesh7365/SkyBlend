@@ -40,6 +40,8 @@ export default function AboutPage() {
           alt=""
           fill
           priority
+          fetchPriority="high"
+          quality={70}
           sizes="100vw"
           className="object-cover object-center"
         />
@@ -198,19 +200,33 @@ export default function AboutPage() {
               </div>
             </article>
             <article className="border-t border-navy/15 pt-6">
-              <h3 className="font-display text-2xl font-semibold text-navy">
-                Prasanta Maharana
-              </h3>
-              <p className="mt-1 text-sm font-semibold tracking-[0.1em] text-teal uppercase">
-                Technical Partner
-              </p>
-              <p className="mt-4 text-base leading-relaxed text-slate">
-                With 32 years of experience spanning greenfield projects, process
-                optimisation, product development, cost-effective formulations,
-                machine configuration and modification, raw-material selection
-                and training, Prasanta Maharana brings deep technical partnership
-                to every engagement.
-              </p>
+              <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+                <div className="relative h-44 w-36 shrink-0 overflow-hidden bg-navy/5 ring-1 ring-navy/10 sm:h-52 sm:w-40">
+                  <Image
+                    src={PHOTOS.technicalPartner.src}
+                    alt={PHOTOS.technicalPartner.alt}
+                    width={900}
+                    height={1125}
+                    className="h-full w-full object-cover object-top"
+                    sizes="160px"
+                  />
+                </div>
+                <div>
+                  <h3 className="font-display text-2xl font-semibold text-navy">
+                    Prasanta Maharana
+                  </h3>
+                  <p className="mt-1 text-sm font-semibold tracking-[0.1em] text-teal uppercase">
+                    Technical Partner
+                  </p>
+                  <p className="mt-4 text-base leading-relaxed text-slate">
+                    With 32 years of experience spanning greenfield projects,
+                    process optimisation, product development, cost-effective
+                    formulations, machine configuration and modification,
+                    raw-material selection and training, Prasanta Maharana brings
+                    deep technical partnership to every engagement.
+                  </p>
+                </div>
+              </div>
             </article>
           </div>
         </div>

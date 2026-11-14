@@ -9,6 +9,8 @@ export function PelletMotif({ className = "", spin = false }: PelletMotifProps) 
       src="/icons/pellet-spiral.svg"
       alt=""
       aria-hidden="true"
+      loading="lazy"
+      decoding="async"
       className={`${spin ? "motif-spin-slow" : ""} ${className}`}
       width={200}
       height={200}

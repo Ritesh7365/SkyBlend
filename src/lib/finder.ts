@@ -11,32 +11,45 @@ export const NEEDS = [
   {
     id: "opacity-white",
     label: "Opacity / whiteness",
-    productIds: ["white", "filler"],
+    productIds: ["white", "filler", "transparent"],
   },
   {
     id: "jet-black",
-    label: "Jet black / outdoor black",
+    label: "Jet black / pipe black",
     productIds: ["black"],
   },
   {
     id: "custom-colour",
-    label: "Custom or brand colour",
+    label: "Colour / shade",
     productIds: ["colour"],
   },
   {
     id: "surface-process",
-    label: "Slip, antiblock, AO, UV, antifog or processing aid",
+    label: "UV, slip, antiblock, AO, process aid or brightener",
     productIds: ["additive"],
   },
   {
     id: "cost-stiffness",
-    label: "Cost optimisation / stiffness (filler)",
-    productIds: ["filler"],
+    label: "CaCO₃ filler / cost optimisation",
+    productIds: ["filler", "transparent"],
+  },
+  {
+    id: "moisture",
+    label: "Moisture control (desiccant)",
+    productIds: ["desiccant"],
   },
   {
     id: "multi",
     label: "Combination / not sure yet",
-    productIds: ["white", "black", "colour", "additive", "filler"],
+    productIds: [
+      "white",
+      "black",
+      "colour",
+      "additive",
+      "filler",
+      "desiccant",
+      "transparent",
+    ],
   },
 ] as const;
 
@@ -67,7 +80,6 @@ export function runFinder(answers: FinderAnswers): FinderResult | null {
     (p) => byNeed.has(p.id) && byMarket.has(p.id),
   );
 
-  // Polymer filter: filler is PE/PP only; engineering excludes filler
   products = products.filter((p) => {
     if (answers.polymer === "engineering") {
       return p.carriers.some((c) => c.toLowerCase().includes("engineering"));
@@ -81,7 +93,6 @@ export function runFinder(answers: FinderAnswers): FinderResult | null {
     return true;
   });
 
-  // If intersection empty, fall back to market ∩ need without polymer strictness
   if (products.length === 0) {
     products = PRODUCT_FAMILIES.filter(
       (p) => byNeed.has(p.id) && byMarket.has(p.id),
@@ -89,18 +100,13 @@ export function runFinder(answers: FinderAnswers): FinderResult | null {
   }
 
   const notes: string[] = [
-    "Recommendations are starting points — final grades depend on machine, film structure, loading and end-use tests.",
-    "Ask for TDS or a sample once you shortlist a family.",
+    "Recommendations point to catalogue families — open each family for exact grade codes and specs.",
+    "Ask for TDS or a sample once you shortlist a grade.",
   ];
 
   if (answers.needId === "cost-stiffness") {
     notes.unshift(
-      "Filler masterbatches (PE & PP) are a SkyBlend core strength for cost and stiffness balance.",
-    );
-  }
-  if (answers.polymer === "engineering") {
-    notes.unshift(
-      "Engineering polymer grades are application-specific — share resin grade and process for a precise match.",
+      "CaCO₃ filler and sodium transparent fillers are listed with active content in the catalogue.",
     );
   }
 

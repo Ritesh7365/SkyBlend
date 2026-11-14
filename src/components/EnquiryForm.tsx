@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { PRODUCT_FAMILIES } from "@/lib/products";
-import { MARKETS } from "@/lib/markets";
+import {
+  CATALOGUE_APPLICATIONS,
+  PRODUCT_FAMILIES,
+} from "@/lib/products";
 import { SITE } from "@/lib/constants";
 
 export type EnquiryType = "quote" | "sample" | "tds";
@@ -122,40 +124,50 @@ export function EnquiryForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...values, enquiryType }),
       });
-      if (!res.ok) throw new Error("API unavailable");
-      setStatus("success");
-      setValues((prev) => ({
-        ...prev,
-        name: "",
-        company: "",
-        email: "",
-        phone: "",
-        polymer: "",
-        message: "",
-      }));
+      const payload = await res.json().catch(() => null);
+
+      if (res.ok) {
+        setStatus("success");
+        setValues((prev) => ({
+          ...prev,
+          name: "",
+          company: "",
+          email: "",
+          phone: "",
+          polymer: "",
+          message: "",
+        }));
+        return;
+      }
+
+      // Fallback if Resend is not configured yet
+      if (res.status === 503) {
+        const subject = encodeURIComponent(
+          `${copy.title} — ${values.productInterest || "SkyBlend"}`,
+        );
+        const body = encodeURIComponent(
+          [
+            `Type: ${enquiryType}`,
+            `Name: ${values.name}`,
+            `Company: ${values.company}`,
+            `Email: ${values.email}`,
+            `Phone: ${values.phone || "—"}`,
+            `Product interest: ${values.productInterest}`,
+            `Application / Market: ${values.application || "—"}`,
+            `Polymer: ${values.polymer || "—"}`,
+            "",
+            values.message,
+          ].join("\n"),
+        );
+        window.location.href = `mailto:${SITE.email}?subject=${subject}&body=${body}`;
+        setStatus("success");
+        return;
+      }
+
+      console.error("[enquiry]", payload?.error || res.statusText);
+      setStatus("error");
     } catch {
-      const subject = encodeURIComponent(
-        `${copy.title} — ${values.productInterest || "SkyBlend"}`,
-      );
-      const body = encodeURIComponent(
-        [
-          `Type: ${enquiryType}`,
-          `Name: ${values.name}`,
-          `Company: ${values.company}`,
-          `Email: ${values.email}`,
-          `Phone: ${values.phone || "—"}`,
-          `Product interest: ${values.productInterest}`,
-          `Application / Market: ${values.application || "—"}`,
-          `Polymer: ${values.polymer || "—"}`,
-          "",
-          values.message,
-        ].join("\n"),
-      );
-      const mailto = SITE.email.includes("@")
-        ? SITE.email
-        : "enquiries@example.com";
-      window.location.href = `mailto:${mailto}?subject=${subject}&body=${body}`;
-      setStatus("success");
+      setStatus("error");
     } finally {
       setSubmitting(false);
     }
@@ -211,7 +223,7 @@ export function EnquiryForm({
         aria-describedby="enquiry-note"
       >
         <p id="enquiry-note" className="sr-only">
-          Submissions use a placeholder API; see README to wire email delivery.
+          Submissions are emailed to SkyBlend via Resend when configured.
         </p>
 
         <div className="grid gap-5 sm:grid-cols-2">
@@ -306,13 +318,12 @@ export function EnquiryForm({
               onChange={(e) => update("productInterest", e.target.value)}
               aria-invalid={Boolean(errors.productInterest)}
             >
-              <option value="">Select a family</option>
+              <option value="">Select a product</option>
               {PRODUCT_FAMILIES.map((p) => (
                 <option key={p.id} value={p.name}>
                   {p.name}
                 </option>
               ))}
-              <option value="Custom / Multiple">Custom / Multiple</option>
             </select>
             {errors.productInterest ? (
               <p className="mt-1 text-sm text-red-700">
@@ -325,7 +336,7 @@ export function EnquiryForm({
               htmlFor="application"
               className="text-sm font-medium text-navy"
             >
-              Application / Market
+              Application
             </label>
             <select
               id="application"
@@ -335,12 +346,11 @@ export function EnquiryForm({
               onChange={(e) => update("application", e.target.value)}
             >
               <option value="">Select if known</option>
-              {MARKETS.map((m) => (
-                <option key={m.id} value={m.name}>
-                  {m.name}
+              {CATALOGUE_APPLICATIONS.map((app) => (
+                <option key={app} value={app}>
+                  {app}
                 </option>
               ))}
-              <option value="Other">Other</option>
             </select>
           </div>
         </div>

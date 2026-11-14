@@ -115,6 +115,7 @@ function DesktopDropdown({ item, pathname }: { item: NavItem; pathname: string }
             <Link
               key={child.href + child.label}
               href={child.href}
+              prefetch={false}
               role="menuitem"
               className="focus-ring block px-4 py-2.5 text-sm text-charcoal transition-colors hover:bg-surface hover:text-navy"
               onClick={() => setOpen(false)}
@@ -214,7 +215,15 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 8);
+        ticking = false;
+      });
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -247,6 +256,8 @@ export function Header() {
             height={231}
             className="h-12 w-auto object-contain sm:h-14"
             priority
+            quality={75}
+            sizes="160px"
           />
         </Link>
 

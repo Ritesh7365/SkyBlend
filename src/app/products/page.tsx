@@ -11,7 +11,7 @@ import { PRODUCT_FAMILIES } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "Products",
-  description: `White, Black, Colour, Additive and Filler masterbatches from ${SITE.name} for PE, PP and engineering polymers.`,
+  description: `SkyBlend product catalogue — White, Black, Colour, Additive, Filler, Desiccant and Transparent grades from ${SITE.name}.`,
 };
 
 export default function ProductsPage() {
@@ -23,6 +23,8 @@ export default function ProductsPage() {
           alt=""
           fill
           priority
+          fetchPriority="high"
+          quality={65}
           sizes="100vw"
           className="object-cover object-center opacity-35"
         />
@@ -32,12 +34,12 @@ export default function ProductsPage() {
             Products
           </p>
           <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-            Masterbatch families for PE, PP & engineering polymers
+            SkyBlend product catalogue
           </h1>
           <p className="mt-4 max-w-2xl text-base text-white/85 sm:text-lg">
-            Regular, specialty and customised grades. Contact us for TDS and
-            available grades — we do not publish unverified capacity or lab
-            claims.
+            White, black, colour, additive, CaCO₃ filler, desiccant and
+            transparent sodium-filler grades — with codes and specs from our
+            product catalogue. Contact us for TDS confirmation.
           </p>
           <nav
             aria-label="Product families"
@@ -59,8 +61,8 @@ export default function ProductsPage() {
       <section className="bg-white">
         <div className="mx-auto max-w-6xl px-4 pt-12 sm:px-6 lg:px-8">
           <SectionHeading
-            title="Choose a family"
-            description="Each family below outlines carriers, benefits and example applications. Filler masterbatches (PE & PP) are a core SkyBlend strength."
+            title="Catalogue families"
+            description="Each family lists current catalogue grades with active content / pigment type, colour and application. CaCO₃ filler remains a SkyBlend core strength."
           />
         </div>
         {PRODUCT_FAMILIES.map((product) => (

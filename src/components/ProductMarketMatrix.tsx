@@ -98,7 +98,12 @@ export function ProductMarketMatrix() {
                   scope="col"
                   className="px-2 py-3 text-center font-semibold text-navy"
                 >
-                  <span className="block text-xs leading-snug">{p.name.replace(" Masterbatch", "")}</span>
+                  <span className="block text-xs leading-snug">
+                    {p.name
+                      .replace(" Masterbatch", "")
+                      .replace(" (CaCO₃)", "")
+                      .replace(" / Sodium Filler", "")}
+                  </span>
                 </th>
               ))}
             </tr>

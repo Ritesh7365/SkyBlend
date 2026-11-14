@@ -27,4 +27,8 @@ export const PHOTOS = {
     src: "/team/hiteshbhai-patel.jpg",
     alt: "HiteshBhai Patel, Founder of SkyBlend Masterbatch LLP",
   },
+  technicalPartner: {
+    src: "/team/prasanta-maharana.jpg",
+    alt: "Prasanta Maharana, Technical Partner at SkyBlend Masterbatch LLP",
+  },
 } as const;

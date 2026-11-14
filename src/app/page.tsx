@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { CTABand } from "@/components/CTABand";
 import { FacilityGallery } from "@/components/FacilityGallery";
@@ -85,7 +84,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Products"
             title="Masterbatch families"
-            description="Clear taxonomy across white, black, colour, additive and filler systems — with filler masterbatches as a core strength."
+            description="Catalogue families: white, black, colour, additive, CaCO₃ filler, desiccant and transparent sodium filler — with grade codes on the Products page."
           />
           <ul className="mt-10 divide-y divide-navy/10 border-y border-navy/10">
             {PRODUCT_FAMILIES.map((product) => (
@@ -133,18 +132,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-navy text-white">
-        <div className="absolute inset-0" aria-hidden="true">
-          <Image
-            src={PHOTOS.warehouse.src}
-            alt=""
-            fill
-            sizes="100vw"
-            className="object-cover opacity-30"
-          />
-          <div className="absolute inset-0 bg-navy/80" />
-        </div>
-        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <section className="bg-navy text-white content-visibility-auto">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
           <SectionHeading
             eyebrow="Why SkyBlend"
             title="Technical depth. Practical results."

@@ -29,6 +29,8 @@ export function Hero({
           alt={PHOTOS.hero.alt}
           fill
           priority
+          fetchPriority="high"
+          quality={70}
           sizes="100vw"
           className="object-cover object-[72%_40%]"
         />
@@ -36,7 +38,7 @@ export function Hero({
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_28%,rgba(0,163,173,0.16),transparent_52%)]" />
         <PelletMotif
           spin
-          className="absolute top-1/2 right-[-12%] h-[min(70vw,28rem)] w-[min(70vw,28rem)] -translate-y-1/2 opacity-10 sm:opacity-20"
+          className="pointer-events-none absolute top-1/2 right-[-12%] hidden h-[min(70vw,28rem)] w-[min(70vw,28rem)] -translate-y-1/2 opacity-20 md:block"
         />
         <div className="absolute right-0 bottom-0 left-0 h-28 bg-gradient-to-t from-[color:var(--surface)] to-transparent" />
       </div>

@@ -30,7 +30,7 @@ export function FacilityImage({
 }: FacilityImageProps) {
   return (
     <figure
-      className={`group relative h-full w-full overflow-hidden bg-navy/5 ${className}`}
+      className={`group relative h-full w-full overflow-hidden bg-navy/5 content-visibility-auto ${className}`}
     >
       <div className={`relative h-full w-full ${aspectClass[aspect]}`}>
         <Image
@@ -38,8 +38,10 @@ export function FacilityImage({
           alt={alt}
           fill
           priority={priority}
+          loading={priority ? "eager" : "lazy"}
+          quality={70}
           sizes={sizes}
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+          className="object-cover md:transition-transform md:duration-700 md:ease-out md:group-hover:scale-[1.03]"
         />
         {overlay === "navy" ? (
           <div

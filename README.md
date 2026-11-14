@@ -71,61 +71,30 @@ CSS variables in `src/app/globals.css`:
 
 Fonts: **Outfit** (display) + **Source Sans 3** (body).
 
-## Contact form — wiring real email
+## Contact form email (Resend)
 
-The contact form validates on the client and `POST`s to `/api/contact`.
+Quote / Sample / TDS forms `POST` to `/api/contact`, which emails **skyblendmasterbatchllp2026@gmail.com** via [Resend](https://resend.com).
 
-Today `src/app/api/contact/route.ts` is a **stub** that:
+### Setup (required once)
 
-1. Validates required fields
-2. Logs a short payload server-side
-3. Returns `{ ok: true }`
-
-If the API call fails, the client falls back to a `mailto:` draft.
-
-### Option A — Resend (recommended)
-
-1. Create a [Resend](https://resend.com) account and API key
-2. Add to `.env.local`:
+1. Sign up at [resend.com](https://resend.com) with `skyblendmasterbatchllp2026@gmail.com`
+2. Create an API key: [resend.com/api-keys](https://resend.com/api-keys)
+3. Copy `.env.local.example` → `.env.local` and set:
 
 ```bash
-RESEND_API_KEY=re_xxx
-CONTACT_TO=sales@your-domain.com
-CONTACT_FROM=website@your-domain.com
+RESEND_API_KEY=re_xxxxxxxx
+CONTACT_TO=skyblendmasterbatchllp2026@gmail.com
+CONTACT_FROM=SkyBlend Website <onboarding@resend.dev>
 ```
 
-3. In `src/app/api/contact/route.ts`, replace the stub with something like:
+4. Restart `npm run dev`
 
-```ts
-import { Resend } from "resend";
+### Notes
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-await resend.emails.send({
-  from: process.env.CONTACT_FROM!,
-  to: process.env.CONTACT_TO!,
-  replyTo: data.email,
-  subject: `Quote request — ${data.productInterest}`,
-  text: [
-    `Name: ${data.name}`,
-    `Company: ${data.company}`,
-    `Email: ${data.email}`,
-    `Phone: ${data.phone || "—"}`,
-    `Product: ${data.productInterest}`,
-    `Application: ${data.application || "—"}`,
-    "",
-    data.message,
-  ].join("\n"),
-});
-```
-
-### Option B — Formspree / Getform
-
-Point the form `action` or fetch URL at your Formspree endpoint and remove the local API stub.
-
-### Option C — mailto only
-
-Set a real address in `src/lib/constants.ts` (`SITE.email`) and rely on the client mailto fallback.
+- Free plan: 3,000 emails/month (100/day)
+- Until a custom domain is verified in Resend, use `onboarding@resend.dev` as the from-address and sign up with the Gmail above (test sends must go to that account email)
+- After verifying `skyblend.in` (or another domain), change `CONTACT_FROM` to e.g. `SkyBlend Website <enquiries@skyblend.in>`
+- If `RESEND_API_KEY` is missing, the form falls back to a mailto draft
 
 ## Contact placeholders
 

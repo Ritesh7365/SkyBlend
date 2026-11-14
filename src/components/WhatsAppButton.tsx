@@ -1,40 +1,19 @@
-"use client";
-
 import Link from "next/link";
-import { getWhatsAppUrl, SITE } from "@/lib/constants";
+import { getWhatsAppUrl } from "@/lib/constants";
 
 export function WhatsAppButton() {
   const url = getWhatsAppUrl();
-  const label = url
-    ? "Chat on WhatsApp"
-    : "WhatsApp enquiry — opens contact form until number is set";
+  const className =
+    "focus-ring fixed right-4 bottom-4 z-[60] inline-flex items-center gap-2.5 rounded-full bg-[#25D366] py-2.5 pr-4 pl-2.5 text-white shadow-[0_8px_20px_rgba(18,140,126,0.35)] transition-transform hover:-translate-y-0.5 sm:right-6 sm:bottom-6";
 
   const content = (
     <>
-      <span
-        className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-[#25D366]/40 blur-md transition-opacity duration-300 group-hover:opacity-90"
-        aria-hidden="true"
-      />
-      <span
-        className="pointer-events-none absolute -inset-1 -z-10 animate-[wa-pulse_2.4s_ease-out_infinite] rounded-full border-2 border-[#25D366]/50"
-        aria-hidden="true"
-      />
-      <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_2px_6px_rgba(0,0,0,0.12)]">
-        <WhatsAppIcon className="h-6 w-6 text-[#25D366]" />
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white">
+        <WhatsAppIcon className="h-5 w-5 text-[#25D366]" />
       </span>
-      <span className="relative flex flex-col items-start pr-1 leading-tight">
-        <span className="text-[13px] font-semibold tracking-wide text-white">
-          WhatsApp
-        </span>
-        <span className="text-[10px] font-medium tracking-wide text-white/85">
-          Chat with us
-        </span>
-      </span>
+      <span className="pr-1 text-sm font-semibold tracking-wide">WhatsApp</span>
     </>
   );
-
-  const className =
-    "group focus-ring fixed right-4 bottom-4 z-[60] inline-flex items-center gap-3 rounded-full bg-[linear-gradient(145deg,#2FE36B_0%,#25D366_45%,#128C7E_100%)] py-2.5 pr-5 pl-2.5 text-white shadow-[0_10px_28px_rgba(18,140,126,0.45),0_2px_8px_rgba(11,42,74,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_34px_rgba(18,140,126,0.55),0_4px_12px_rgba(11,42,74,0.2)] sm:right-6 sm:bottom-6";
 
   if (url) {
     return (
@@ -43,7 +22,7 @@ export function WhatsAppButton() {
         target="_blank"
         rel="noopener noreferrer"
         className={className}
-        aria-label={label}
+        aria-label="Chat on WhatsApp"
       >
         {content}
       </a>
@@ -54,8 +33,7 @@ export function WhatsAppButton() {
     <Link
       href="/contact?type=quote"
       className={className}
-      aria-label={label}
-      title={`Set SITE.whatsapp to enable chat. ${SITE.responseSla}`}
+      aria-label="WhatsApp enquiry"
     >
       {content}
     </Link>
