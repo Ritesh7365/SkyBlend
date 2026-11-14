@@ -1,6 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import { PelletMotif } from "@/components/PelletMotif";
 import { SITE } from "@/lib/constants";
+import { PHOTOS } from "@/lib/photos";
 
 type HeroProps = {
   headline: string;
@@ -21,18 +23,22 @@ export function Hero({
 }: HeroProps) {
   return (
     <section className="relative min-h-[calc(100svh-5rem)] overflow-hidden bg-navy text-white">
-      {/* Full-bleed visual plane */}
       <div className="absolute inset-0" aria-hidden="true">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,rgba(0,163,173,0.35),transparent_55%),linear-gradient(160deg,#0B2A4A_0%,#0B2A4A_45%,#0a3d52_100%)]" />
-        <div className="absolute inset-0 opacity-[0.07] [background-image:radial-gradient(rgba(255,255,255,0.5)_1px,transparent_1px)] [background-size:18px_18px]" />
+        <Image
+          src={PHOTOS.hero.src}
+          alt={PHOTOS.hero.alt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[72%_40%]"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(11,42,74,0.86)_0%,rgba(11,42,74,0.58)_46%,rgba(11,42,74,0.2)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_28%,rgba(0,163,173,0.16),transparent_52%)]" />
         <PelletMotif
           spin
-          className="absolute top-1/2 right-[-8%] h-[min(90vw,38rem)] w-[min(90vw,38rem)] -translate-y-1/2 opacity-40 sm:right-[-4%] sm:opacity-50"
+          className="absolute top-1/2 right-[-12%] h-[min(70vw,28rem)] w-[min(70vw,28rem)] -translate-y-1/2 opacity-10 sm:opacity-20"
         />
-        <div
-          className="absolute right-0 bottom-0 left-0 h-24 bg-gradient-to-t from-[color:var(--surface)] to-transparent"
-          aria-hidden="true"
-        />
+        <div className="absolute right-0 bottom-0 left-0 h-28 bg-gradient-to-t from-[color:var(--surface)] to-transparent" />
       </div>
 
       <div className="relative mx-auto flex min-h-[calc(100svh-5rem)] max-w-6xl flex-col justify-center px-4 py-20 sm:px-6 lg:px-8">
@@ -42,7 +48,7 @@ export function Hero({
         <h1 className="animate-fade-up-delay mt-4 max-w-3xl font-display text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
           {headline}
         </h1>
-        <p className="animate-fade-up-delay-2 mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
+        <p className="animate-fade-up-delay-2 mt-5 max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg">
           {support}
         </p>
         <div className="animate-fade-up-delay-2 mt-8 flex flex-wrap gap-3">
@@ -54,7 +60,7 @@ export function Hero({
           </Link>
           <Link
             href={secondaryHref}
-            className="focus-ring inline-flex min-h-11 items-center justify-center border border-white/45 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/10"
+            className="focus-ring inline-flex min-h-11 items-center justify-center border border-white/50 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:border-white hover:bg-white/15"
           >
             {secondaryLabel}
           </Link>

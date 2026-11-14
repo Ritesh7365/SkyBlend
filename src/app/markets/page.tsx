@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { CTABand } from "@/components/CTABand";
 import { MarketTile } from "@/components/MarketTile";
@@ -6,6 +7,7 @@ import { ProductMarketMatrix } from "@/components/ProductMarketMatrix";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SITE } from "@/lib/constants";
 import { MARKETS } from "@/lib/markets";
+import { PHOTOS } from "@/lib/photos";
 
 export const metadata: Metadata = {
   title: "Markets",
@@ -15,15 +17,24 @@ export const metadata: Metadata = {
 export default function MarketsPage() {
   return (
     <>
-      <section className="bg-navy text-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <section className="relative overflow-hidden bg-navy text-white">
+        <Image
+          src={PHOTOS.warehouse.src}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_30%] opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/88 to-navy/65" />
+        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
           <p className="text-sm font-semibold tracking-[0.16em] text-cyan uppercase">
             Markets
           </p>
           <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold tracking-tight sm:text-5xl">
             Application-mapped masterbatch solutions
           </h1>
-          <p className="mt-4 max-w-2xl text-base text-white/80 sm:text-lg">
+          <p className="mt-4 max-w-2xl text-base text-white/85 sm:text-lg">
             From blown film to sheet extrusion — each market links to the product
             families most often specified for that process.
           </p>

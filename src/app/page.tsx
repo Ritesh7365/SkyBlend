@@ -1,10 +1,14 @@
+import Image from "next/image";
 import Link from "next/link";
 import { CTABand } from "@/components/CTABand";
+import { FacilityGallery } from "@/components/FacilityGallery";
+import { FacilityImage } from "@/components/FacilityImage";
 import { Hero } from "@/components/Hero";
 import { PelletDivider } from "@/components/PelletMotif";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SITE } from "@/lib/constants";
 import { MARKETS } from "@/lib/markets";
+import { PHOTOS } from "@/lib/photos";
 import { PRODUCT_FAMILIES } from "@/lib/products";
 
 const WHY = [
@@ -39,35 +43,42 @@ export default function HomePage() {
       />
 
       <section className="bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-          <SectionHeading
-            eyebrow="Company"
-            title="SkyBlend Masterbatch LLP"
-            description="A part of the Sky Group — manufacturing from Morbi, Gujarat."
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8 lg:py-20">
+          <div>
+            <SectionHeading
+              eyebrow="Company"
+              title="SkyBlend Masterbatch LLP"
+              description="A part of the Sky Group — manufacturing from Morbi, Gujarat."
+            />
+            <PelletDivider />
+            <p className="mt-6 text-base leading-relaxed text-slate sm:text-lg">
+              SkyBlend Masterbatch LLP, a part of the Sky Group, is a Morbi,
+              Gujarat-based manufacturer of White, Black, Colour, and Additive
+              Masterbatches for PE, PP and Engineering Polymers, including PE-
+              and PP-based Filler Masterbatches. With over 15 years of industry
+              experience, we specialise in regular, specialty and customised
+              masterbatch solutions across film, moulding, raffia, pipe, fibre
+              and sheet applications. {SITE.tagline}
+            </p>
+            <Link
+              href="/about"
+              className="focus-ring mt-6 inline-flex min-h-11 items-center text-sm font-semibold text-teal underline-offset-4 hover:underline"
+            >
+              Read our story
+            </Link>
+          </div>
+          <FacilityImage
+            src={PHOTOS.quality.src}
+            alt={PHOTOS.quality.alt}
+            caption={PHOTOS.quality.caption}
+            aspect="video"
+            sizes="(max-width: 1024px) 100vw, 45vw"
+            overlay="navy"
           />
-          <PelletDivider />
-          <p className="mx-auto mt-6 max-w-4xl text-base leading-relaxed text-slate sm:text-lg">
-            SkyBlend Masterbatch LLP, a part of the Sky Group, is a Morbi,
-            Gujarat-based manufacturer of White, Black, Colour, and Additive
-            Masterbatches for PE, PP and Engineering Polymers, including PE- and
-            PP-based Filler Masterbatches. With over 15 years of industry
-            experience, we specialise in regular, specialty and customised
-            masterbatch solutions for Blown & Cast Films, Extrusion Coating &
-            Lamination, Injection & Blow Moulding, Rotational Moulding, Raffia &
-            FIBC, Pipe & Profile Extrusion, Mono & Multifilament, Agricultural
-            Films, and Sheet Extrusion (PP, HIPS, PC & PET). Driven by technical
-            expertise, consistent quality and customer-focused innovation, we
-            deliver reliable, high-performance and cost-effective masterbatch
-            solutions. {SITE.tagline}
-          </p>
-          <Link
-            href="/about"
-            className="focus-ring mt-6 inline-flex min-h-11 items-center text-sm font-semibold text-teal underline-offset-4 hover:underline"
-          >
-            Read our story
-          </Link>
         </div>
       </section>
+
+      <FacilityGallery />
 
       <section className="border-y border-navy/10 bg-surface">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
@@ -122,8 +133,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-navy text-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <section className="relative overflow-hidden bg-navy text-white">
+        <div className="absolute inset-0" aria-hidden="true">
+          <Image
+            src={PHOTOS.warehouse.src}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-navy/80" />
+        </div>
+        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
           <SectionHeading
             eyebrow="Why SkyBlend"
             title="Technical depth. Practical results."

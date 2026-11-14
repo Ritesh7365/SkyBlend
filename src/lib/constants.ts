@@ -8,7 +8,7 @@ export const SITE = {
     "Manufacturer of White, Black, Colour, Additive and Filler masterbatches for PE, PP and engineering polymers — from Morbi, Gujarat.",
   url: "https://skyblend.in",
   // Replace remaining placeholders when confirmed
-  email: "[email to be confirmed]",
+  email: "skyblendmasterbatchllp2026@gmail.com",
   phone: "+91 91573 36441",
   /** Digits only with country code for wa.me */
   whatsapp: "919157336441",

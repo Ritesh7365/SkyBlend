@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { CTABand } from "@/components/CTABand";
+import { FacilityImage } from "@/components/FacilityImage";
 import { ProductFamily } from "@/components/ProductFamily";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SITE } from "@/lib/constants";
+import { PHOTOS } from "@/lib/photos";
 import { PRODUCT_FAMILIES } from "@/lib/products";
 
 export const metadata: Metadata = {
@@ -14,15 +17,24 @@ export const metadata: Metadata = {
 export default function ProductsPage() {
   return (
     <>
-      <section className="bg-navy text-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <section className="relative overflow-hidden bg-navy text-white">
+        <Image
+          src={PHOTOS.quality.src}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center opacity-35"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/70" />
+        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
           <p className="text-sm font-semibold tracking-[0.16em] text-cyan uppercase">
             Products
           </p>
           <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold tracking-tight sm:text-5xl">
             Masterbatch families for PE, PP & engineering polymers
           </h1>
-          <p className="mt-4 max-w-2xl text-base text-white/80 sm:text-lg">
+          <p className="mt-4 max-w-2xl text-base text-white/85 sm:text-lg">
             Regular, specialty and customised grades. Contact us for TDS and
             available grades — we do not publish unverified capacity or lab
             claims.
@@ -57,18 +69,28 @@ export default function ProductsPage() {
       </section>
 
       <section className="border-t border-navy/10 bg-surface">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-          <p className="max-w-3xl text-base text-slate">
-            Need a custom shade, additive package or filler loading for a
-            specific line?{" "}
-            <Link
-              href="/contact"
-              className="focus-ring font-semibold text-teal underline-offset-4 hover:underline"
-            >
-              Contact us for TDS and grades
-            </Link>
-            .
-          </p>
+        <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8">
+          <FacilityImage
+            src={PHOTOS.warehouse.src}
+            alt={PHOTOS.warehouse.alt}
+            caption={PHOTOS.warehouse.caption}
+            aspect="video"
+            overlay="navy"
+            sizes="(max-width: 1024px) 100vw, 45vw"
+          />
+          <div>
+            <p className="max-w-3xl text-base leading-relaxed text-slate sm:text-lg">
+              Need a custom shade, additive package or filler loading for a
+              specific line?{" "}
+              <Link
+                href="/contact?type=tds"
+                className="focus-ring font-semibold text-teal underline-offset-4 hover:underline"
+              >
+                Contact us for TDS and grades
+              </Link>
+              .
+            </p>
+          </div>
         </div>
       </section>
 

@@ -98,6 +98,7 @@ const organizationJsonLd = {
     addressCountry: "IN",
   },
   telephone: "+919157336441",
+  email: SITE.email,
   taxID: SITE.gstin,
   areaServed: "IN",
 };

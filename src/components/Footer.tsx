@@ -67,7 +67,14 @@ export function Footer() {
           <div className="mt-6 space-y-1 text-sm text-white/70">
             <p>{SITE.address}</p>
             <p>GSTIN: {SITE.gstin}</p>
-            <p>{SITE.email}</p>
+            <p>
+              <a
+                href={`mailto:${SITE.email}`}
+                className="transition-colors hover:text-white"
+              >
+                {SITE.email}
+              </a>
+            </p>
             <p>
               <a
                 href="tel:+919157336441"

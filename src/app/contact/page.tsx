@@ -29,7 +29,7 @@ export default function ContactPage() {
       </section>
 
       <section className="bg-white">
-        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-14 sm:px-6 lg:grid-cols-[1fr_1.2fr] lg:gap-16 lg:px-8 lg:py-16">
+        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-14 sm:px-6 lg:grid-cols-[1fr_1.2fr] lg:items-start lg:gap-16 lg:px-8 lg:py-16">
           <aside>
             <SectionHeading
               title="SkyBlend Masterbatch LLP"
@@ -58,7 +58,14 @@ export default function ContactPage() {
                 <dt className="font-semibold tracking-[0.08em] text-navy uppercase">
                   Email
                 </dt>
-                <dd className="mt-1 text-slate">{SITE.email}</dd>
+                <dd className="mt-1">
+                  <a
+                    href={`mailto:${SITE.email}`}
+                    className="font-semibold text-teal underline-offset-4 hover:underline"
+                  >
+                    {SITE.email}
+                  </a>
+                </dd>
               </div>
               <div>
                 <dt className="font-semibold tracking-[0.08em] text-navy uppercase">
