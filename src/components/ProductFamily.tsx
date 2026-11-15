@@ -10,8 +10,13 @@ type ProductFamilyProps = {
 export function ProductFamily({ product }: ProductFamilyProps) {
   const encoded = encodeURIComponent(product.name);
   const hasGroups = product.grades.some((g) => g.group);
-  let lastGroup = "";
   const photos = product.photos ?? [];
+  const gradeRows = product.grades.map((grade, index) => {
+    const prev = product.grades[index - 1];
+    const showGroup =
+      hasGroups && Boolean(grade.group) && grade.group !== prev?.group;
+    return { grade, showGroup };
+  });
 
   return (
     <article
@@ -110,44 +115,39 @@ export function ProductFamily({ product }: ProductFamilyProps) {
                   </tr>
                 </thead>
                 <tbody>
-                  {product.grades.map((grade) => {
-                    const showGroup =
-                      hasGroups && grade.group && grade.group !== lastGroup;
-                    if (grade.group) lastGroup = grade.group;
-                    return (
-                      <Fragment key={grade.code}>
-                        {showGroup ? (
-                          <tr className="bg-surface">
-                            <td
-                              colSpan={4}
-                              className="px-3 py-2 text-xs font-semibold tracking-[0.1em] text-teal uppercase"
-                            >
-                              {grade.group}
-                            </td>
-                          </tr>
-                        ) : null}
-                        <tr className="border-t border-navy/10 align-top">
-                          <td className="px-3 py-2.5 font-medium text-navy whitespace-nowrap">
-                            {grade.code}
-                          </td>
-                          <td className="px-3 py-2.5 text-slate">
-                            {grade.specs.map((s) => (
-                              <div key={s.label}>
-                                <span className="text-charcoal/70">{s.label}:</span>{" "}
-                                {s.value}
-                              </div>
-                            ))}
-                          </td>
-                          <td className="px-3 py-2.5 text-slate">
-                            {grade.colour ?? "—"}
-                          </td>
-                          <td className="px-3 py-2.5 text-slate">
-                            {grade.application}
+                  {gradeRows.map(({ grade, showGroup }) => (
+                    <Fragment key={grade.code}>
+                      {showGroup ? (
+                        <tr className="bg-surface">
+                          <td
+                            colSpan={4}
+                            className="px-3 py-2 text-xs font-semibold tracking-[0.1em] text-teal uppercase"
+                          >
+                            {grade.group}
                           </td>
                         </tr>
-                      </Fragment>
-                    );
-                  })}
+                      ) : null}
+                      <tr className="border-t border-navy/10 align-top">
+                        <td className="px-3 py-2.5 font-medium text-navy whitespace-nowrap">
+                          {grade.code}
+                        </td>
+                        <td className="px-3 py-2.5 text-slate">
+                          {grade.specs.map((s) => (
+                            <div key={s.label}>
+                              <span className="text-charcoal/70">{s.label}:</span>{" "}
+                              {s.value}
+                            </div>
+                          ))}
+                        </td>
+                        <td className="px-3 py-2.5 text-slate">
+                          {grade.colour ?? "—"}
+                        </td>
+                        <td className="px-3 py-2.5 text-slate">
+                          {grade.application}
+                        </td>
+                      </tr>
+                    </Fragment>
+                  ))}
                 </tbody>
               </table>
             </div>

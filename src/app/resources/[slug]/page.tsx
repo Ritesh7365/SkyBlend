@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { CTABand } from "@/components/CTABand";
 import { SITE } from "@/lib/constants";
 import { getArticle, KNOWLEDGE_ARTICLES } from "@/lib/knowledge";
@@ -25,7 +26,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function ResourceArticlePage({ params }: Props) {
+export default function ResourceArticlePage({ params }: Props) {
+  return (
+    <Suspense
+      fallback={
+        <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="h-8 w-40 animate-pulse bg-navy/10" />
+          <div className="mt-4 h-12 w-3/4 animate-pulse bg-navy/10" />
+          <div className="mt-6 h-24 w-full animate-pulse bg-navy/5" />
+        </div>
+      }
+    >
+      <ResourceArticle params={params} />
+    </Suspense>
+  );
+}
+
+async function ResourceArticle({ params }: Props) {
   const { slug } = await params;
   const article = getArticle(slug);
   if (!article) notFound();

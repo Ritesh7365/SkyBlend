@@ -69,10 +69,6 @@ function DesktopDropdown({ item, pathname }: { item: NavItem; pathname: string }
     };
   }, []);
 
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
   const children = item.children ?? [];
   const wide = children.length > 8;
 
@@ -211,6 +207,11 @@ function MobileAccordion({
 
 export function Header() {
   const pathname = usePathname();
+  // Remount on route change so menus close without setState-in-effect
+  return <HeaderInner key={pathname} pathname={pathname} />;
+}
+
+function HeaderInner({ pathname }: { pathname: string }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -228,10 +229,6 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   return (
     <header
