@@ -25,7 +25,7 @@ export const NAV_ITEMS: NavItem[] = [
       ...PRODUCT_FAMILIES.map((p) => ({
         href: `/products#${p.id}`,
         label: p.name,
-        description: p.highlight ? "Core strength" : p.carriers.join(" · "),
+        description: p.highlight ? "Core strength" : p.carriers.join(" and "),
       })),
     ],
   },

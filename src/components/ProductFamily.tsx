@@ -46,7 +46,7 @@ export function ProductFamily({ product }: ProductFamilyProps) {
             ) : null}
             <p className="mt-5 text-sm text-charcoal">
               <span className="font-semibold text-navy">Carriers:</span>{" "}
-              {product.carriers.join(" · ")}
+              {product.carriers.join(" and ")}
             </p>
             <p className="mt-2 text-sm text-charcoal">
               <span className="font-semibold text-navy">Applications:</span>{" "}
@@ -55,24 +55,30 @@ export function ProductFamily({ product }: ProductFamilyProps) {
             {photos.length > 0 ? (
               <div
                 className={`mt-6 grid gap-3 ${
-                  photos.length > 1 ? "grid-cols-2" : "grid-cols-1"
+                  photos.length >= 3
+                    ? "grid-cols-1 sm:grid-cols-3"
+                    : photos.length > 1
+                      ? "grid-cols-2"
+                      : "grid-cols-1"
                 }`}
               >
                 {photos.map((photo) => (
-                  <div
-                    key={photo.src}
-                    className="relative aspect-[1.333] overflow-hidden bg-navy/5"
-                  >
-                    <Image
-                      src={photo.src}
-                      alt={photo.alt}
-                      fill
-                      sizes="(max-width: 1024px) 45vw, 280px"
-                      quality={65}
-                      loading="lazy"
-                      className="object-cover"
-                    />
-                  </div>
+                  <figure key={photo.src} className="min-w-0">
+                    <div className="relative aspect-[1.333] overflow-hidden bg-navy/5">
+                      <Image
+                        src={photo.src}
+                        alt={photo.alt}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 220px"
+                        quality={65}
+                        loading="lazy"
+                        className="object-cover"
+                      />
+                    </div>
+                    <figcaption className="mt-2 text-xs font-medium tracking-[0.06em] text-slate uppercase">
+                      {photo.alt.replace(/ masterbatch pellets$/i, "")}
+                    </figcaption>
+                  </figure>
                 ))}
               </div>
             ) : null}

@@ -275,8 +275,16 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     applications: ["Blown / cast film"],
     photos: [
       {
-        src: "/photos/products/transparent-pellets.webp",
-        alt: "Transparent sodium filler masterbatch pellets",
+        src: "/photos/products/sodium-filler.webp",
+        alt: "Sodium filler masterbatch pellets",
+      },
+      {
+        src: "/photos/products/modify-filler.webp",
+        alt: "Modify filler masterbatch pellets",
+      },
+      {
+        src: "/photos/products/tpt-filler.webp",
+        alt: "TPT transparent filler masterbatch pellets",
       },
     ],
     grades: [

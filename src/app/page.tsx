@@ -102,7 +102,7 @@ export default function HomePage() {
                     ) : null}
                   </span>
                   <span className="max-w-xl text-sm text-slate sm:text-right">
-                    {product.carriers.join(" · ")}
+                    {product.carriers.join(" and ")}
                   </span>
                 </Link>
               </li>
