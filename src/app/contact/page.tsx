@@ -73,7 +73,7 @@ export default function ContactPage() {
                 </dt>
                 <dd className="mt-1">
                   <a
-                    href="tel:+919157336441"
+                    href="tel:+919979236441"
                     className="font-semibold text-teal underline-offset-4 hover:underline"
                   >
                     {SITE.phone}

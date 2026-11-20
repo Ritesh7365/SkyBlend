@@ -77,7 +77,7 @@ export function Footer() {
             </p>
             <p>
               <a
-                href="tel:+919157336441"
+                href="tel:+919979236441"
                 className="transition-colors hover:text-white"
               >
                 {SITE.phone}

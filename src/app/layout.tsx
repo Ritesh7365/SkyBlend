@@ -101,7 +101,7 @@ const organizationJsonLd = {
     postalCode: "363650",
     addressCountry: "IN",
   },
-  telephone: "+919157336441",
+  telephone: "+919979236441",
   email: SITE.email,
   taxID: SITE.gstin,
   areaServed: "IN",

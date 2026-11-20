@@ -9,9 +9,9 @@ export const SITE = {
   url: "https://skyblend.in",
   // Replace remaining placeholders when confirmed
   email: "skyblendmasterbatchllp2026@gmail.com",
-  phone: "+91 91573 36441",
+  phone: "+91 99792 36441",
   /** Digits only with country code for wa.me */
-  whatsapp: "919157336441",
+  whatsapp: "919979236441",
   gstin: "24AGBFS8785P1Z0",
   address:
     "Plot No. 21, S. No. 651 P1 & 651 P2, Lajai, Tankara, Morbi, Gujarat 363650, India",
