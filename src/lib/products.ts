@@ -280,7 +280,7 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
       },
       {
         src: "/photos/products/modify-filler.webp",
-        alt: "Modify filler masterbatch pellets",
+        alt: "Modifier masterbatch pellets",
       },
       {
         src: "/photos/products/tpt-filler.webp",
